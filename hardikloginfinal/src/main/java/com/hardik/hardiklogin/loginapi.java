@@ -68,6 +68,7 @@ public class loginapi {
 			{
 				System.out.println("Hello " + user.getUsername() + " Login Success..!");
 				FirebaseOptions options = FirebaseOptions.builder()
+					//set credentials in your environment variables
 				    .setCredentials(GoogleCredentials.getApplicationDefault())
 				    .setDatabaseUrl("https://<DATABASE_NAME>.firebaseio.com/")
 				    .build();
@@ -75,14 +76,15 @@ public class loginapi {
 	                FirebaseApp.initializeApp(options);
 	                }
 				System.out.print(FirebaseApp.getApps());
-				System.out.println("id=="+doc.get("id"));
-				String uid = (String)doc.get("id");
+				System.out.println("id=="+doc.get("id")); //this is not the default _id of mongoDB
+				String uid = (String)doc.get("id");   //an id is to be generated at the time of signup
 				Map<String, Object> additionalClaims = new HashMap<String, Object>();
-				additionalClaims.put("premiumAccount", true);
+				additionalClaims.put("clearanceLevel", 50);
 
 				String customToken = FirebaseAuth.getInstance()
 				    .createCustomToken(uid, additionalClaims);
 				// Send token back to client
+				return "Token value-"+customToken;
 				
 			}
 				return "working";
