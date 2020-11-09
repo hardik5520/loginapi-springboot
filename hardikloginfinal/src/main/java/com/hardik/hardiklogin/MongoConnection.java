@@ -14,7 +14,7 @@ public class MongoConnection {
 		if (mongoClient != null)
 			return mongoClient;
 		MongoClientURI uri = new MongoClientURI(
-				"mongodb://hardikuser:shiro123@cluster0-shard-00-00.n3g8u.mongodb.net:27017,cluster0-shard-00-01.n3g8u.mongodb.net:27017,cluster0-shard-00-02.n3g8u.mongodb.net:27017/test?connectTimeoutMS=300000&replicaSet=atlas-x0o1fm-shard-0&ssl=true&authSource=admin");
+				"//paste your connection url here");
 		mongoClient = new MongoClient(uri);
 
 		return mongoClient;
